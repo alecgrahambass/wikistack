@@ -1,16 +1,17 @@
 const express = require('express');
 const { db, Page, User } = require('./models');
+const wikiRouter = require('./routes/wiki.js')
 
 
 const app = express()
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
-
+app.use('/wiki', wikiRouter)
 
 
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  res.redirect('/wiki');
 })
 
 // db.authenticate()
